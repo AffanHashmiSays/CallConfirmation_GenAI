@@ -55,10 +55,6 @@ const GoogleSheetsManager: React.FC = () => {
   });
   const [showAddOrder, setShowAddOrder] = useState(false);
 
-  useEffect(() => {
-    checkIntegrationStatus();
-  }, []);
-
   const checkIntegrationStatus = async () => {
     try {
       const response = await apiService.get('/integrations/google-sheets/status');
@@ -73,6 +69,10 @@ const GoogleSheetsManager: React.FC = () => {
       });
     }
   };
+
+  useEffect(() => {
+    checkIntegrationStatus();
+  }, [checkIntegrationStatus]);
 
   const fetchPendingOrders = async () => {
     setLoading(true);

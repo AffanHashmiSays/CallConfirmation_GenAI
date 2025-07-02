@@ -15,14 +15,9 @@ import apiService from '../../services/api';
 const Calls: React.FC = () => {
   const [calls, setCalls] = useState<Call[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState<CallFilters>({});
   const [showFilters, setShowFilters] = useState(false);
-
-  useEffect(() => {
-    fetchCalls();
-  }, [filters]);
 
   const fetchCalls = async () => {
     try {
@@ -30,12 +25,15 @@ const Calls: React.FC = () => {
       const response = await apiService.getCalls(filters);
       setCalls(response.data);
     } catch (err: any) {
-      setError('Failed to load calls');
       console.error('Calls error:', err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchCalls();
+  }, [filters, fetchCalls]);
 
   const filteredCalls = calls.filter(call =>
     call.call_id.toLowerCase().includes(searchTerm.toLowerCase()) ||

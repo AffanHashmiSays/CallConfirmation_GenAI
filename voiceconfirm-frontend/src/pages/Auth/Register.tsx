@@ -217,13 +217,21 @@ const Register: React.FC = () => {
 
           <div className="text-xs text-gray-500 text-center">
             By creating an account, you agree to our{' '}
-            <a href="#" className="text-primary-600 hover:text-primary-500">
+            <button
+              type="button"
+              className="text-primary-600 hover:text-primary-500 bg-transparent border-none p-0 underline cursor-pointer"
+              onClick={() => { /* TODO: implement terms of service logic */ }}
+            >
               Terms of Service
-            </a>{' '}
+            </button>{' '}
             and{' '}
-            <a href="#" className="text-primary-600 hover:text-primary-500">
+            <button
+              type="button"
+              className="text-primary-600 hover:text-primary-500 bg-transparent border-none p-0 underline cursor-pointer"
+              onClick={() => { /* TODO: implement privacy policy logic */ }}
+            >
               Privacy Policy
-            </a>
+            </button>
           </div>
         </form>
       </div>

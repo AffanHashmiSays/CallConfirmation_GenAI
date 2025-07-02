@@ -14,15 +14,9 @@ import apiService from '../../services/api';
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState<OrderFilters>({});
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedOrders, setSelectedOrders] = useState<string[]>([]);
-
-  useEffect(() => {
-    fetchOrders();
-  }, [filters]);
 
   const fetchOrders = async () => {
     try {
@@ -30,12 +24,15 @@ const Orders: React.FC = () => {
       const response = await apiService.getOrders(filters);
       setOrders(response.data);
     } catch (err: any) {
-      setError('Failed to load orders');
       console.error('Orders error:', err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchOrders();
+  }, [filters, fetchOrders]);
 
   const handleInitiateCall = async (orderId: string) => {
     try {
