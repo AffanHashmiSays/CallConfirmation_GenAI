@@ -36,7 +36,7 @@ RUN adduser -S nextjs -u 1001
 USER nextjs
 
 # Expose port
-EXPOSE 3000
+EXPOSE 3003
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \

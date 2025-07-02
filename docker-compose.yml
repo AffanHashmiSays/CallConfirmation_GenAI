@@ -16,7 +16,7 @@ services:
       context: ./voiceconfirm-frontend
     container_name: voiceconfirm-frontend
     ports:
-      - "3003:3000"   # ✅ Correct port mapping
+      - "3003:3003"   # ✅ Correct port mapping
     depends_on:
       - backend
     restart: unless-stopped
